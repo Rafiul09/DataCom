@@ -1,4 +1,4 @@
-A = 2; B = 0; C = 4; D = 4; E = 3; F = 1; G = 8; H = 3;
+A = 2; B = 0; C = 4; D = 2; E = 3; F = 0; G = 9; H = 1;
 
 K1 = A + B;
 K2 = G + H + 2;
@@ -22,13 +22,17 @@ plot(t, x3);
 
 subplot(3, 1, 1);
 plot(t, x1);
-
+xlabel = ('t');
+ylabel = ('x1');
+title('21-44631-1 Mohammad Rafiul Haque');
 subplot(3, 1, 2);
 plot(t, x2);
-
+xlabel = ('t');
+ylabel = ('x1');
 subplot(3, 1, 3);
 plot(t, x3);
-
+xlabel = ('t');
+ylabel = ('x1');
 ------------------
 ------------------
 CT:fs = 5000;
