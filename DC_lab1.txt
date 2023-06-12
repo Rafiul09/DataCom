@@ -1,0 +1,14 @@
+
+t = -5:1:5;
+J1 = 25*3.1416/180;
+angle  =  2*3.1416*4573*t + J1;
+x1 = 3*cos(2*3.1416*14*t)+J1;
+subplot(3,1,1);
+plot(angle,x1)
+%axis([-2*pi 2*pi -1 0 1])
+xlabel('-\pi \leq t \leq \pi')
+ylabel('cos(t)')
+title('The cosine function')
+ax = gca;
+ax.XAxisLocation = 'origin'
+ax.YAxisLocation = 'origin';
