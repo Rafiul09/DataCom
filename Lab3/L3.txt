@@ -77,16 +77,12 @@ s = (C + D + H) / 30;
 fs = 8000;
 t = 0:1/fs:1-1/fs;
 % Generate composite signal
-x = A1*sin(2*pi*((C+D+H)*100)*t) +
-A2*cos(2*pi*((D+E+H)*100)*t) + s*randn(size(t));
+x = A1*sin(2*pi*((C+D+H)*100)*t) + A2*cos(2*pi*((D+E+H)*100)*t) + s*randn(size(t));
 % Calculate the bandwidth of the signal
 bandwidth = obw(x, fs);
 % Calculate the maximum capacity of the channel
 SNR = snr(x, s*randn(size(t))); % Calculate SNR
-C = bandwidth * log2(1 + SNR); % Maximum capacity of
-the channel
-bandwidth
-C
+C = bandwidth * log2(1 + SNR); % Maximum capacity of the channel bandwidth C
 4.
 clc
 clear all
@@ -109,31 +105,23 @@ data_rate = 100000; % Specify the desired data rate
 % Calculate the required signal level
 bit_duration = 1 / data_rate; % Duration of one bit
 total_duration = 1; % Total duration of the signal
-num_bits = round(data_rate * total_duration); % Total
-number of bits
-t = linspace(0, total_duration, num_bits); % Time
-vector
+num_bits = round(data_rate * total_duration); % Total number of bits
+t = linspace(0, total_duration, num_bits); % Time vector
 % Generate the signal at the desired data rate
-x = A1 * sin(2*pi*((C+D+H)*100)*t) + A2 *
-cos(2*pi*((D+E+H)*100)*t) + s * randn(size(t));
-% Perform signal level adjustment to achieve the
-desired data rate
-desired_energy = bit_duration; % Energy per bit
-(assuming unity energy per bit)
-current_energy = sum(x.^2) / length(x); % Energy of the
-generated signal
-adjustment_factor = sqrt(desired_energy /
-current_energy); % Signal level adjustment factor
+x = A1 * sin(2*pi*((C+D+H)*100)*t) + A2 * cos(2*pi*((D+E+H)*100)*t) + s * randn(size(t));
+% Perform signal level adjustment to achieve the desired data rate
+desired_energy = bit_duration; % Energy per bit (assuming unity energy per bit)
+current_energy = sum(x.^2) / length(x); % Energy of the generated signal
+adjustment_factor = sqrt(desired_energy / current_energy); % Signal level adjustment factor
 adjusted_x = x * adjustment_factor; % Adjusted signal
 % Calculate the adjusted signal level
-adjusted_pow_signal = sum(adjusted_x.^2) /
-length(adjusted_x);
+adjusted_pow_signal = sum(adjusted_x.^2) / length(adjusted_x);
 % Display the adjusted signal level
-disp(['Adjusted Signal Level: '
-num2str(adjusted_pow_signal)]);
+disp(['Adjusted Signal Level: ' num2str(adjusted_pow_signal)]);
 % Plot the adjusted signal (optional)
 figure;
 plot(t, adjusted_x);
 xlabel('Time');
 ylabel('Amplitude');
 title('Adjusted Signal');
+Adjusted Signal Level: 1e-05
