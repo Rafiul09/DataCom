@@ -18,10 +18,8 @@ s = (C + D + H) / 30;
 fs = 8000;
 t = 0:1/fs:1-1/fs;
 % Generate composite signal
-x = A1*sin(2*pi*((C+D+H)*100)*t) +
-A2*cos(2*pi*((D+E+H)*100)*t) + s*randn(size(t));
-% Plot the composite signal
-figure
+x = A1*sin(2*pi*((C+D+H)*100)*t) + A2*cos(2*pi*((D+E+H)*100)*t) + s*randn(size(t));
+% Plot the composite signal figure
 plot(t, x, 'linewidth', 1.5)
 grid on
 xlabel('Time (seconds)')
@@ -48,14 +46,12 @@ s = (C + D + H) / 30;
 fs = 8000;
 t = 0:1/fs:1-1/fs;
 % Generate composite signal
-x = A1*sin(2*pi*((C+D+H)*100)*t) +
-A2*cos(2*pi*((D+E+H)*100)*t) + s*randn(size(t));
+x = A1*sin(2*pi*((C+D+H)*100)*t) + A2*cos(2*pi*((D+E+H)*100)*t) + s*randn(size(t));
 % Calculate the SNR
 pow_signal = sum(x.^2) / length(x);
 pow_noise = sum(s^2) / length(x);
-SNR = 10*log10(pow_signal/pow_noise);
-% Display SNR value
-SNR
+SNR = 10*log10(pow_signal/pow_noise)
+% Display SNR value SNR
 3.
 clc;
 clear all;
@@ -82,7 +78,7 @@ x = A1*sin(2*pi*((C+D+H)*100)*t) + A2*cos(2*pi*((D+E+H)*100)*t) + s*randn(size(t
 bandwidth = obw(x, fs);
 % Calculate the maximum capacity of the channel
 SNR = snr(x, s*randn(size(t))); % Calculate SNR
-C = bandwidth * log2(1 + SNR); % Maximum capacity of the channel bandwidth C
+C = bandwidth * log2(1 + SNR) % Maximum capacity of the channel bandwidth C
 4.
 clc
 clear all
