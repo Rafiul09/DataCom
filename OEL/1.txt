@@ -1,0 +1,28 @@
+file = 'sample.wav';
+conv = 'mySpeech_8k.wav';
+[y, fso] = audioread(file);
+fs = 48000;
+audiowrite(conv, y, fs);
+[samp_sig, fs] = audioread(conv);
+N = length(samp_sig);
+slength = N/fs;
+samp_t = linspace(0, N/fs, N);
+n = 4;
+L = 2^n;
+delta = (max(samp_sig) - min(samp_sig))/(L-1); % step size
+quant_sig = min(samp_sig) + round(((samp_sig)-min(samp_sig))/delta)*delta;
+figure
+subplot(2,1,1)
+plot(samp_t, samp_sig, 'r-.', 'linewidth',1.5)
+grid on
+xlabel('time in seconds')
+ylabel('amplitude in volts')
+title('original signal')
+subplot(2,1,2)
+plot(samp_t, quant_sig, 'r-.', 'linewidth',1.5);
+xlabel('time')
+ylabel('amplitude')
+title('quantized signal')
+filename='quants_48K_4.wav';
+audiowrite(filename,quant_sig,fs);
+sound(quant_sig, fs)
